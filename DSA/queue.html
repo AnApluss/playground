@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Structure - Queue</title>
+  </head>
+
+  <body>
+
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+
+       function Queue(){
+         
+        this.queue = [];
+         //this.count = 0;
+         
+         this.size = function(){
+           console.log(this.queue.length);
+         };
+
+         this.isEmpty = function(){
+           return this.queue === [];
+         };
+
+         this.enqueue = function(element){
+           this.queue.push(element);
+         };
+
+         this.dequeue = function(){
+            return this.queue.shift();
+         };
+
+         this.firstOnQueue = function(){
+           return this.queue[0];
+         };
+
+         this.printQueue = function(){
+           console.log(this.queue);
+         }
+
+       }
+
+       var q = new Queue(); 
+        q.enqueue('a'); 
+        q.enqueue('b');
+        q.enqueue('c');
+        q.printQueue();
+        q.dequeue();
+        q.size();
+        console.log(q.isEmpty());
+        console.log(q.firstOnQueue());
+
+    </script>
+</html>

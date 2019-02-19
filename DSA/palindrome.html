@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Structure - Stack</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+     
+        class Palindrome{
+            constructor(stringValue){
+                this.stringValue = stringValue;
+            }
+
+            isPalindrome(){
+
+                let letters = [];
+                let word = this.stringValue;
+                let rword = "";
+
+                for( let i = 0; i < word.length; i++ ){
+                    letters.push(word[i]);
+                }
+
+                for( let j = 0; j < word.length; j++){
+                    rword += letters.pop();
+                }
+
+                if( word === rword ){
+                    return word + ' is a palindrome';
+                }else{
+                    return word + ' is not a palindrome';
+                }
+
+            }
+        }
+
+        Palindrome.prototype = Object.create(Palindrome.prototype);
+        Palindrome.prototype.constructor = Palindrome;
+
+        pal = new Palindrome('amama');
+        console.log(pal.isPalindrome());
+
+    </script>
+</html>

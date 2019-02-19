@@ -1,0 +1,33 @@
+<script>
+function numberToOrdinal(n) {
+
+  let result;
+
+  if(n < 0){
+    return false;
+  }else if(n === 0){
+    result = "0";
+  }else if(n > 0){
+    
+    let nToString = n.toString();
+    let lastStringIndex = nToString.length-1;
+    let lastStringElement = nToString[lastStringIndex];
+   
+    if( lastStringElement == "1" && n % 100 !== 11 ){
+      result = nToString + "st";
+    }else if( lastStringElement == "2" && n % 100 !== 12 ){
+      result = nToString + "nd";
+    }else if( lastStringElement == "3" && n % 100 !== 13 ){
+      result = nToString + "rd";
+    }else{
+      result = nToString + "th"
+    }
+    
+  }
+  
+  return result;
+}
+
+
+console.log(numberToOrdinal(15));
+</script>

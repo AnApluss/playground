@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>How to inherit from non-constructible object</title>
+  </head>
+
+  <body>
+
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+    
+    const Animal = {
+      speak() {
+        console.log(this.name + ' makes a noise.');
+      }
+    };
+
+    class Dog {
+      constructor(name) {
+        this.name = name;
+      }
+    }
+
+    // If you do not do this you will get a TypeError when you invoke speak
+    //Inherit functionality from non-constructible object
+    Object.setPrototypeOf(Dog.prototype, Animal);
+
+    let d = new Dog('Mitzie');
+    d.speak(); // Mitzie makes a noise.
+
+    </script>
+</html>

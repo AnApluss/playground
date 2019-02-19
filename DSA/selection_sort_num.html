@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Structure & Algorithm - Selection Sorting</title>
+  </head>
+
+  <body>
+
+
+  </body>
+
+    <script>
+      
+        function selectionSort(alist){
+
+        for( var fillslot = alist.length-1; fillslot >= 0; fillslot--  ){
+            // console.log('Im herew');
+            var positionOfMax = 0;
+
+            for( var location = 1; location < fillslot + 1; location++ ){
+                if( alist[location] > alist[positionOfMax] ){
+                    positionOfMax = location;
+                }
+            }
+
+            var temp = alist[fillslot];
+            alist[fillslot] = alist[positionOfMax];
+            alist[positionOfMax] = temp;
+        }
+
+        }
+
+
+        alist = [2, 7, 10, 8, 3, 5, 9, 6, 1, 4, 11];
+
+        selectionSort(alist);
+        console.log(alist);
+
+    </script>
+</html>

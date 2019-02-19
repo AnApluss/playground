@@ -1,0 +1,68 @@
+<script>
+
+const checkerFunction = (x, y) => {
+//   Code here
+  let greatest; 
+  let smallest;
+  let allValues = [];
+  let result = [];
+  
+  //this code check the greatest and smallest value between x and y 
+  if( x > y ){
+    greatest = x;
+    smallest = y;
+  }else if( x < y ){
+    greatest = y;
+    smallest = x;
+  }
+  
+  if( x == 0 && y == 0){
+    return result;
+  }
+  
+  
+  //this generate the all the available value(s) between smallest and greatest value(s)
+  for( let i = smallest; i <= greatest; i++ ){
+    allValues.push(parseInt(i)); 
+  }
+  
+  for( let j = 1; j < allValues.length; j++ ){
+    
+    //this to check if the values are even number
+    if(x > y && allValues[j] % 2 === 0){
+      result.push(allValues[j]);
+    }
+    
+    //this to check if the values are odd number
+    if(y > x && allValues[j] % 2 !== 0){
+      result.push(allValues[j]);
+    }
+      
+  }
+  return result      
+}    
+  
+console.log(checkerFunction(2, 10));
+console.log(checkerFunction(10, 2));
+
+
+/*Given two numbers X and Y, write a function that:
+1 returns even numbers between X and Y, if X is greater than Y else it returns odd numbers between x and y
+For instance, take the integers 10 and 2 . the function would return all the even numbers between 2 and 10.
+
+Specification
+numberGame(x, y)
+Return a list of odd or even number between two integers X and Y
+
+Parameters
+x: Number - The first integer provided
+
+y: Number - The second integer provided
+
+Return Value
+Number - a list of odd or even numbers between x and y
+
+Examples:
+12, 0 => [2,4,6,8,10]*/
+
+</script>

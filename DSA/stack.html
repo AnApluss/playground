@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Structure - Stack</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+     
+     class Stack{
+         constructor(){
+             this.items = [];
+         }
+         isEmpty(){ return this.items.length == [] ? true : false; };
+         pop(){ return this.items.pop(); };
+         peek(){ return this.items[this.items.length-1]; };
+         push(item){ this.items.push(item); };
+         size(){ return this.items.length; };
+     }
+
+
+     let s = new Stack();
+     console.log(s.isEmpty());
+     s.push('bag');
+     console.log(s.size());
+     console.log(s.peek());
+     s.push('ball');
+     console.log(s.peek());
+     console.log(s.size());
+     s.push('bate');
+     console.log(s.peek());
+     console.log(s.size());
+     console.log(s.isEmpty());
+     console.log(s.pop());
+     console.log(s.pop());
+     console.log(s.pop());
+     console.log(s.isEmpty());
+     console.log(s.size());
+     console.log('\n\n');
+
+     //implementing stack data structure almost without javascript function
+
+     class StackDsa{
+       constructor(){
+         this.storage = {};
+         this.count = 0;
+       };
+
+       isEmpty(){
+        return this.count === 0 ? true : false;
+       }
+
+       push( item ){
+               
+        this.storage[this.count] = item;
+        this.count++
+         
+       };
+
+       pop(){
+          if(this.count === 0){
+            return 'undefined';
+          }
+
+          this.count--;
+          let result = this.storage[this.count];
+          delete this.storage[this.count];
+          return result;
+          
+        };
+
+       peek(){
+          
+          return this.storage[this.count-1];
+       };
+
+       size(){
+         
+         return this.count;
+       }
+
+     }
+
+     StackDsa.prototype = Object.create(StackDsa.prototype);
+     StackDsa.prototype.constructor = StackDsa;
+
+     let sdsa = new StackDsa();
+     console.log(sdsa.isEmpty());
+     sdsa.push('water');
+     console.log(sdsa.peek());
+     sdsa.push('eraser');
+     console.log(sdsa.peek());
+     sdsa.push('egg');
+     console.log(sdsa.peek());
+     sdsa.push('programming');
+     console.log(sdsa.peek());
+     sdsa.pop();
+     sdsa.pop();
+     sdsa.pop();
+     sdsa.pop();
+     console.log(sdsa.peek());
+     console.log(sdsa.size());
+     console.log(sdsa.isEmpty());
+
+
+    </script>
+</html>

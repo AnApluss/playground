@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+      
+      function Person(first, last, age, gender, interest){
+
+        this.name = {
+          'first': first,
+          'last':  last
+        };
+
+        this.age = age;
+        this.gender = gender;
+        this.interest = interest;
+        
+        Person.prototype.bio = function(){
+          var  dotNspace = '. '; //this is to output a dot and space
+
+          var holder = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
+
+          holder += this.gender  === 'male' || this.gender === 'Male' || this.gender === 'M' || this.gender === 'm' ? 'He likes ' : this.gender === 'female' || this.gender === 'Female' || this.gender === 'F' || this.gender === 'f' ? 'She likes ' : 'They likes ';
+
+          //this code list all available value of interest property and concatenate the result to holder variable
+          if( interest.length === 1 ){
+            holder += interest[0];
+          }else if( interest.length === 2 ){
+            holder += interest[0] + ' and ' + interest[1];
+          }else{
+
+            var adjust;
+            for( var i = 0; i < interest.length; i++ ){
+          
+              if (  i < interest.length -1  ){
+                adjust = ', ';
+                holder += interest[i] + adjust;
+              }
+              else if( i === interest.length -1 ){
+                //this truncate the last two characters in holder variable
+                //it remove the last comma and space in the string
+                holder = holder.substring(0, holder.length-2);
+                adjust = ' and ';
+                holder += adjust + interest[i];
+              }
+              
+            }
+          }
+          holder += dotNspace;
+        
+          //this code check the gender to determine the description to be given to such gender and concatenate the result to holder variable
+          var genderDescription = this.gender  === 'male' || this.gender === 'Male' || this.gender === 'M' || this.gender === 'm' ? 'His gender is ' : this.gender === 'female' || this.gender === 'Female' || this.gender === 'F' || this.gender === 'f' ? 'Her gender is ' : 'They are ';
+
+          //this concatenate gender value to the result of genderDescription variable
+          genderDescription += this.gender; 
+
+          holder += genderDescription;
+
+          //this code display the overall result of holder variable on a dialog box
+          alert(holder);
+        };
+
+        Person.prototype.greeting = function(){
+          alert('Hi! I\'m ' + this.name.first + '.'); 
+        };
+
+      }
+      
+      
+      var person1 = new Person('Ann', 'MacAkin', 30, 'Female', ['Music', 'Coding', 'Travelling', 'Reading']);
+      person1.bio();
+      person1.greeting();
+
+      function Teacher(first, last, age, gender, interest, subject){
+        //this is used to called Person Object since Person object has no constructor.  
+        //it let Object Teacher to use its parameters as arguments for Object Person   
+        Person.call(this, first, last, age, gender, interest);
+        this.subject = subject;
+      }
+      
+      //it let Teacher object to gain access to the properties and functions of object Person
+      Teacher.prototype = Object.create(Person.prototype);
+      Teacher.prototype.construct = Teacher;
+      // Object.defineProperty(Teacher.prototype, 'constructor', {
+      //   value: Teacher,
+      //   enumerable: false,
+      //   writable: true }
+      // );
+
+      Teacher.prototype.greeting = function(){
+
+        var prefix = this.gender  === 'male' || this.gender === 'Male' || this.gender === 'M' || this.gender === 'm' ? 'Mr' : this.gender === 'female' || this.gender === 'Female' || this.gender === 'F' || this.gender === 'f' ? 'Mrs' : 'Miss';
+
+        alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+
+      }
+
+      var teacher1 = new Teacher('Mariam', 'Roland', 32, 'female', ['Music', 'Watching football', 'Travelling', 'Reading'], 'Creative writing');
+      teacher1.bio();
+      teacher1.greeting();
+
+      function Student(first, last, age, gender, interest){
+        
+        Person.call(this, first, last, age, gender, interest);
+
+      }
+
+      Student.prototype = Object.create(Person.prototype);
+      Student.prototype.construct = Student;
+      // Object.defineProperty(Student.prototype, 'constructor', {
+      //   value: Student,
+      //   enumerable: false,
+      //   writable: true
+      // });
+
+      Student.prototype.greeting = function(){
+        alert('Yo! I\'m ' + this.name.first + '.');
+      }
+
+      var student1 = new Student('Bolu', 'Oderinde', 17, 'male', ['Watching Movie', 'Watching football', 'Travelling', 'Chatting']);
+      student1.bio();
+      student1.greeting();
+    </script>
+</html>

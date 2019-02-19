@@ -1,0 +1,26 @@
+<script>
+
+function numberToOrdinal(n) {
+  // Finish me
+
+  if(n < 0){
+    return false;
+  }else if(n === 0){
+    return "0";
+  }else if(n > 0){
+    var j = n % 10,
+        k = n % 100;
+    if (j == 1 && k != 11) {
+        return n + "st";
+    }
+    if (j == 2 && k != 12) {
+        return n + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return n + "rd";
+    }
+    return n + "th";
+    }
+    
+  }
+  </script>

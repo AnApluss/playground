@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ES6 - Fundamentals of ECMAScript 2015</title>
+  </head>
+
+  <body>
+
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+
+      //using default parameter================================================
+      console.log('how to use default parameter');
+
+      function sayMsg(msg='This is a default message.') {
+        console.log(msg);
+      }
+
+      sayMsg(); // This is a default message.
+      sayMsg('This is a different message!'); // This is a different message!
+      
+      console.log('\n\n');
+      
+      
+      //using map method======================================================
+      console.log('how to use map method');
+
+      var a = [
+        'Hydrogen',
+        'Helium',
+        'Lithium',
+        'Beryl­lium'
+      ];
+
+      // compare this implementation...
+      //var a2 = a.map(function(s){ return s.length });
+
+      // ... to this implementation with the fat arrow
+      var a3 = a.map( s => s.length  );
+      console.log(a3);
+      console.log('\n\n');
+
+
+      let mapNum = new Map([[1, 'is a number key']]);
+      let today = new Date();
+
+      //anything can be a key
+      console.log('Map element at initialization: ', mapNum);
+      
+      mapNum.set(today.toString(), 111);
+      mapNum.set(today, 222);
+      console.log('Map element after two more elements as been set: ', mapNum);
+      mapNum.delete(today.toString());
+
+      console.log('The map contains', mapNum.size, 'elements.');
+      console.log('The map has a today Date key:', mapNum.has(today));
+      console.log('The map has a today string key:', mapNum.has(today.toString()));
+
+      //values and keys
+      mapNum.forEach((value, key, map) => console.log(value, key, map));
+
+      //iterable
+      for (let value of mapNum) {
+        console.log(value);
+      }
+
+      //iterable values
+      for (let value of mapNum.values()) {
+        console.log(value);
+      }
+
+      //iterable keys
+      for (let value of mapNum.keys()) {
+        console.log(value);
+      }
+
+      //iterable entries (key, value)
+      for (let value of mapNum.entries()) {
+        console.log(value);
+      }
+
+      console.log('\n\n');
+
+      // using reduce method===============================================
+      console.log('how to use reduce method');
+
+      var evens = [1, 2, 3, 4].reduce((memo, i) => {
+        if (i % 2 === 0) {
+          memo.push(i);
+        }
+
+        return memo;
+      }, []);
+
+      console.log(evens);
+      console.log('\n\n');
+
+
+      // spread operator===================================================
+      console.log('how to use spread operator');
+
+      const first = [1, 2, 3];
+      const second = [0, ...first, 4, 5];
+
+      // [0, 1, 2, 3, 4, 5]
+      console.log(second);
+
+
+      function add(a, b) {
+        return a + b;
+      }
+
+      let nums = [5, 4];
+
+      console.log(add(...nums));
+      console.log('\n\n');
+
+      //function without parameter but receiving argument===========================
+      console.log('how to get argument for function without parameter');
+
+      const num = [1, 2, 3, 4, 5];
+
+      function printArr() {
+        // recall that every function gets an `arguments`
+        // object
+        console.log(arguments);
+      }
+
+      // using `a` from above
+      // [1, 2, 3]
+      printArr(...num);      
+      console.log('\n\n');
+
+
+      //using template string=========================================================
+      console.log('how to use template string');
+      var foo = 'bar';
+      var sentence = `I went to the ${foo} after working in ES5 for too long.`;
+
+      console.log(sentence);
+
+      let person = {name: 'John Smith'};
+      let tpl = `My name is ${person.name}.`;
+
+      console.log(tpl);
+      console.log('\n\n');
+
+
+      //using destructuring assignment========================================================
+      console.log('how to use destructuring assignment');
+      const [j, k] = [1, 4, 2];
+      
+      console.log([j,k]);
+      console.log('\n\n');
+
+      let [one, two] = [1, 2];
+      let {three, four} = {three: 3, four:  4};
+
+      console.log(one, two, three, four); // 1 2 3 4
+      console.log('\n\n');
+
+
+      //let and var keyword in action=================================================
+      var x = 0;
+
+      for (let i = 0; i < 10; i++) {
+        x += 10;
+      }
+
+      try {
+        console.log(i);
+      } catch(e) {
+        console.log(
+          'i does not exist here!'
+        );
+      }
+      console.log('\n\n');
+
+
+      //using with for...of iterator=================================================
+      let arr = [1, 2, 3, 4, 5];
+      let sum = 0;
+
+      for (let v of arr) {
+        sum += v;
+      }
+
+      console.log('1 + 2 + 3 + 4 + 5 =', sum);
+      console.log('\n\n');
+
+
+      //using rest parameter========================================================
+
+      function format(str, ...args) {
+        return str.replace(/\{\s*(\d+)\s*\}/g, function(match, position) {
+          return args[position];
+        });
+      }
+
+      let msg = format(
+        'The {0}st arg is a string, the {1} are {2}.',
+        1,
+        'rest',
+        'unknown'
+      );
+
+      console.log(msg);
+      console.log('\n\n');
+
+
+      //how to use set==============================================================
+
+      let setNum = new Set([1, 2, 3, 4, 4, 4, 5]);
+      
+      setNum.add(6);
+      setNum.delete(2);
+
+      console.log('The set contains', setNum.size, 'elements.');
+      console.log('The set has 1:', setNum.has(1));
+      console.log('The set has 8:', setNum.has(8));
+
+      
+      //values and keys are the same in a set
+      setNum.forEach((value, key, set) => console.log(value, key, set));
+
+      //iterable
+      for (let value of setNum) {
+        console.log(value);
+      }
+
+      //iterable values
+      for (let value of setNum.values()) {
+        console.log(value);
+      }
+
+      //iterable keys
+      for (let value of setNum.keys()) {
+        console.log(value);
+      }
+
+      //iterable entries (key, value)
+      for (let value of setNum.entries()) {
+        console.log(value);
+      }
+     
+      console.log('\n\n');
+
+      //using promise============================================
+      console.log('how to use promise');
+
+      var longFn = function() {
+        return new Promise(function(res, rej) {
+          setTimeout(res, 5000);
+        });
+      };
+
+      var coolFn = function() {
+        console.log('cool');
+      };
+
+      // logs cool after 1 second
+      longFn().then(coolFn);
+      //console.log('\n\n');
+
+     
+    </script>
+</html>

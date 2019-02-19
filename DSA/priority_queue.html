@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Structure - Queue</title>
+  </head>
+
+  <body>
+
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+
+       function PriorityQueue(){
+         
+        this.queue = [];
+         //this.count = 0;
+         
+         this.size = function(){
+           console.log(this.queue.length);
+         };
+
+         this.isEmpty = function(){
+           return this.queue === [];
+         };
+
+         this.enqueue = function(element){
+           
+          if(this.isEmpty()){
+            this.queue.push(element);
+            //return;
+           }else{
+
+            let added = false;
+           
+            for( let i = 0; i < this.queue.length; i++){
+              
+              if(element[1] < this.queue[i][1]){
+                let index = this.queue[i];
+                this.queue.splice(index, 0, element);
+                added = true;
+                break;
+               //return;
+              }
+            
+            }
+
+            if(!added){
+              this.queue.push(element);
+            }
+
+          } 
+
+         };
+
+         this.dequeue = function(){
+            let value = this.queue.shift();
+            return value[0];
+         };
+
+         this.firstOnQueue = function(){
+           return this.queue[0];
+         };
+
+         this.printQueue = function(){
+           console.log(this.queue);
+         }
+
+       }
+
+       var pq = new PriorityQueue(); 
+        pq.enqueue(['Beau Carnes', 2]); 
+        pq.enqueue(['Quincy Larson', 3]);
+        pq.enqueue(['Ewa Mitulska-Wójcik', 1]);
+        pq.enqueue(['Briana Swift', 2]);
+        pq.size();
+        pq.printQueue();
+        pq.dequeue();
+        pq.size();
+        console.log(pq.firstOnQueue());
+        pq.dequeue();
+        pq.size();
+        pq.printQueue();
+        console.log(pq.isEmpty());
+
+    </script>
+</html>

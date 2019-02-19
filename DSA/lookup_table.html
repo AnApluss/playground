@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DSA - O(1)</title>
+  </head>
+
+  <body>
+    <p>
+      This example requires you to enter commands in your browser's JavaScript
+      console (see
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools"
+        >What are browser developer tools</a
+      >
+      for more information).
+    </p>
+  </body>
+
+  <script>
+    const dictionary = {
+      the: 22038615,
+      be: 12545825,
+      and: 10741073,
+      of: 10343885,
+      a: 10144200,
+      in: 6996437,
+      to: 6332195,
+      please: 6632195,
+      home: 6732195,
+      come: 7032195
+    };
+
+    getWordFrequency = function(dictionary, word) {
+      return dictionary[word];
+    };
+
+    console.log(
+      getWordFrequency(dictionary, "please") +
+        "\n" +
+        getWordFrequency(dictionary, "come") +
+        "\n" +
+        getWordFrequency(dictionary, "home")
+    );
+  </script>
+</html>

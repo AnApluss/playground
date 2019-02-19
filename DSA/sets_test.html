@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Structure - Sets</title>
+  </head>
+
+  <body>
+
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+
+       class SetsTest{
+
+         constructor(){
+           this.collections  = [];
+         };
+
+         has(element){
+           return (this.collections.indexOf(element) !== -1);
+         };
+
+         add(element){
+           if( !this.has(element) ){
+             this.collections.push(element);
+             return true;
+           }
+           return false;
+
+         };
+
+         remove(element){
+           if( this.has(element) ){
+              let index = this.collections.indexOf(element);
+              this.collections.splice(index, 1);
+              return true;
+           }
+           return false;
+
+         };
+
+         values(){
+           return this.collections;
+         };
+
+         size(){
+            return this.values().length;
+         };
+
+         intersect(otherSet){
+
+          let intersectionSet = new SetsTest();
+          let firstSet = this.values();
+          
+          firstSet.forEach( element => {
+            if(otherSet.has(element)){
+              intersectionSet.add(element);
+            }
+          });
+          return intersectionSet;
+         };
+
+         union(otherSet){
+
+          let unionSet = new SetsTest();
+          let firstSet = this.values();
+          let secondSet = otherSet.values();
+
+          firstSet.forEach( element => {
+              unionSet.add(element);
+          });
+
+          secondSet.forEach( element => {
+              unionSet.add(element);
+          });
+          return unionSet;
+         };
+
+        difference(otherSet){
+          let differenceSet = new SetsTest();
+          let firstSet = this.values();
+
+          firstSet.forEach( element => {
+            if( !otherSet.has(element) ){
+              differenceSet.add(element);
+            }
+          });
+          return differenceSet;
+
+        };
+
+        subset(otherSet){
+          
+          let firstSet = this.values();
+
+          return firstSet.every( value => {
+           return otherSet.has(value);
+          });
+
+        };
+
+       }
+
+       let setA = new SetsTest();
+       let setB = new SetsTest();
+       setA.add("a");
+       setA.add("b");
+       setA.add("c");
+       setA.remove("c");
+       setB.add("m");
+       setB.add("a");
+       setB.add("b")
+
+       console.log(setA.values());
+       console.log(setB.values());
+       console.log(setA.subset(setB));
+
+       console.log(setA.intersect(setB).values());
+       console.log(setA.union(setB).values());
+       console.log(setB.difference(setA).values());
+       console.log(setB.subset(setA));
+
+
+      //  console.log(setA.size());
+      //  console.log(setA.has("c"));
+      //  console.log(setA.has("a"));
+     
+    </script>
+</html>

@@ -1,0 +1,44 @@
+<script>
+
+  /*
+  "Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”."
+  */
+
+  (function fizzbuzz(){
+
+    let count = 1;
+    let nodivisibleCount = 0;
+    let divisibleByJustThreeCount = 0;
+    let divisibleByJustFiveCount = 0;
+    let divisibleByThreeAndFiveCount = 0;
+
+    while(count <= 100){
+
+      let result = '';
+      let divisibleByThree = count % 3;
+      let divisibleByFive = count % 5;
+
+      if( divisibleByThree === 0 && divisibleByFive !== 0 ){
+        result += count + ' Fizz\n';
+        divisibleByJustThreeCount++;
+      }else if( divisibleByThree !== 0 && divisibleByFive === 0 ){
+        result += count +' Buzz\n';
+        divisibleByJustFiveCount++;
+      }else if( divisibleByThree === 0 && divisibleByFive === 0 ){
+        result += count + ' FizzBuzz\n';
+        divisibleByThreeAndFiveCount++;
+      }else{
+        result += count + '\n';
+        nodivisibleCount++;
+      }
+      console.log(result);
+      count++
+
+    }
+      console.log('count for nondivisible = ' + nodivisibleCount);
+      console.log('count for divisible by 3 = ' + divisibleByJustThreeCount);
+      console.log('count for divisible by 5 = ' + divisibleByJustFiveCount);
+      console.log('count for divisible by 3 and 5 = ' + divisibleByThreeAndFiveCount);
+  }());
+
+</script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Structure & Algorithm - Selection Sorting</title>
+  </head>
+
+  <body>
+
+
+  </body>
+
+    <script>
+      
+        function selectionSort(alist){
+
+            for( var fillslot = alist.length-1; fillslot >= 0; fillslot--  ){
+                // console.log('Im herew');
+                var positionOfMax = 0;
+
+                for( var location = 1; location < fillslot + 1; location++ ){
+                    if( alist[location].length > alist[positionOfMax].length ){
+                        positionOfMax = location;
+                    }
+                }
+
+                var temp = alist[fillslot];
+                alist[fillslot] = alist[positionOfMax];
+                alist[positionOfMax] = temp;
+            }
+
+        }
+
+        function descending(stringValue){
+            let letters = [];
+            let word = stringValue;
+            let rword = [];
+
+            for( let i = 0; i < word.length; i++ ){
+                letters.push(word[i]);
+            }
+
+            for( let j = 0; j < word.length; j++){
+                rword [j]= letters.pop();
+            }
+
+            console.log(rword);
+            console.log(rword[5-1]);
+        }
+
+      //alist = [2, 7, 10, 8, 3, 5, 9, 6, 1, 4, 11];
+        alist = ["Abia", "Adamawa", "Anambra", "Akwa Ibom", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Enugu", "Edo", "Ekiti", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"]
+        selectionSort(alist);
+
+        console.log(alist);
+        descending( alist );
+        
+    </script>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .borderStyle{
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+      height: 10vh;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 1px 2px 1px 3px gold;
+    }
+    
+    input[type="text"], input[type="button"]{
+      padding: 10px;
+    }
+
+    label{
+      font-size: 20px;
+      color: darkgray;
+      font-weight: 600;
+      font-family: Helvetica, Arial, sans-serif;
+      margin-right: 5px;
+    }
+
+    input[type="text"]{
+      color: darkgrey;
+      border-radius: 10px;
+      font-size: 18px;
+      border: 1px solid lightgrey;
+    }
+
+    input[type="button"]{
+      background-color: darkslategray;
+      border: none;
+      box-shadow: 1px 2px 2px 2px gray;
+      color: white;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+
+    input[type="button"]:hover{
+      cursor: pointer;
+      background-color: black;
+    }
+
+    #result{
+      margin-top: 10px;
+    }
+
+    .green{
+      color: green;
+    }
+
+    .red{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="borderStyle">
+    <label>Input Digit</label>
+    <input type="text" id="digitInput">
+    <input type="button" value="Validate" onclick="validateFunction()">
+    <div id="result"></div>
+  </div>
+    
+  <script>
+  function validateFunction(){
+  
+  let resultHolder;
+  let result = document.getElementById('result');
+  let digitInput = document.getElementById('digitInput').value;
+ 
+  //this convert digit from input element to string
+  let digitToString = digitInput.toString();
+  
+  //this remove all whitespace available in the input element
+  let digit = digitToString.replace(/ /g, '');
+  
+  //this check if digit has non-digit
+  //if digit contain only digit string .test() return true
+  //else its return false
+  let isNumeric = /^[0-9]+$/.test(digit); 
+  
+  let digitLength = digit.length;
+
+  
+  if(isNumeric){
+    if( digitLength <= 1 ){
+      resultHolder = 'Digit of length 1 or less is not valid'
+      result.removeAttribute("class");
+      result.classList.add("red");
+    }else{
+
+      let sum = 0;
+      let isSecond = false;
+
+      for( let digitIndex = digitLength - 1; digitIndex >= 0; digitIndex--){
+
+        let d = parseInt( digit[digitIndex] );
+
+        if(isSecond === true){
+          d = d * 2;
+        }
+        
+        sum += Math.floor(d/10);
+        sum += d % 10;
+
+        isSecond = !isSecond;
+       
+      }
+
+      if( sum % 10 === 0){
+        resultHolder = digitInput + ' is Valid';
+        result.removeAttribute("class");
+        result.classList.add("green");
+      }else{
+        resultHolder = digitInput + ' is not Valid';
+        result.removeAttribute("class");
+        result.classList.add("red");
+      }
+
+    }
+  }else{
+    if(  digitInput === "" ){
+      resultHolder = 'Input field is empty';
+      result.removeAttribute("class");
+      result.classList.add("red");
+    }else{
+      resultHolder = 'All non-digit characters are disallowed';
+      result.removeAttribute("class");
+      result.classList.add("red");
+    } 
+  }
+  
+  result.innerHTML = resultHolder;
+  
+}
+  </script>
+</body>
+</html>

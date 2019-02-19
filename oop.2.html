@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+      
+      function Person(first, last, age, gender, interest){
+
+        this.name = {
+          'first': first,
+          'last':  last
+        };
+
+        this.age = 30;
+        this.gender = gender;
+        this.interest = interest;
+        
+        this.bio = function(){
+          var  dotNspace = '. '; //this is to output a dot and space
+
+          var holder = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ';
+
+          //this code list all available value of interest property and concatenate the result to holder variable
+          if( interest.length === 1 ){
+            holder += interest[0];
+          }else if( interest.length === 2 ){
+            holder += interest[0] + ' and ' + interest[1];
+          }else{
+
+            var adjust;
+            for( var i = 0; i < interest.length; i++ ){
+          
+              if (  i < interest.length -1  ){
+                adjust = ', ';
+                holder += interest[i] + adjust;
+              }
+              else if( i === interest.length -1 ){
+                //this truncate the last two characters in holder variable
+                //it remove the last comma and space in the string
+                holder = holder.substring(0, holder.length-2);
+                adjust = ' and ';
+                holder += adjust + interest[i];
+              }
+              
+            }
+          }
+          holder += dotNspace;
+        
+          //this code check the gender to determine the description to be given to such gender and concatenate the result to holder variable
+          var genderDescription = this.gender  === 'male' || this.gender === 'Male' || this.gender === 'M' || this.gender === 'm' ? 'His gender is ' : this.gender === 'female' || this.gender === 'Female' || this.gender === 'F' || this.gender === 'f' ? 'Her gender is ' : 'They are ';
+
+          //this concatenate gender value to the result of genderDescription variable
+          genderDescription += this.gender; 
+
+          holder += genderDescription;
+
+          //this code display the overall result of holder variable on a dialog box
+          alert(holder);
+        };
+
+        this.greeting = function(){
+          alert('Hi! I\'m ' + this.name.first + '.'); 
+        };
+
+      }
+      
+      var Person1 = new Person('Ann', 'MacAkin', 30, 'Female', ['Music', 'Coding', 'Travelling', 'Reading']);
+      Person1.bio();
+      Person1.greeting();
+
+
+    </script>
+</html>
